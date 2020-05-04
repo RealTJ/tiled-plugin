@@ -1,6 +1,7 @@
 #output
 build/
-log/
+doc/help.js
+doc/help.pdf
 
 # Logs
 logs
