@@ -1,3 +1,7 @@
+#output
+build/
+log/
+
 # Logs
 logs
 *.log
