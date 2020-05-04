@@ -1,7 +1,7 @@
 /******************************************************************************
  * YED_Tiled.js                                                               *
  ******************************************************************************
- * Tiled Plugin v2.03                                                         *
+ * Tiled Plugin v2.04                                                         *
  * By Archeia and Dr. Yami                                                    *
  ******************************************************************************
  * License: Custom                                                            *
@@ -12,7 +12,7 @@
  ******************************************************************************/
 
 /*:
- * @plugindesc v2.03 Plugin supports Tiled Map Editor maps with some additional
+ * @plugindesc v2.04 Plugin supports Tiled Map Editor maps with some additional
  * features.
  * @author Dr.Yami
  *
@@ -54,7 +54,7 @@
  * @type number
  *
  * @param Tile Settings
- * 
+ *
  * @param Half-tile movement
  * @parent Tile Settings
  * @desc Moving and collision checking by half a tile.
@@ -75,7 +75,7 @@
  * @type number
  * @min 1
  * @default 10
- * 
+ *
  * @param Basic Floor Heal
  * @parent Tile Settings
  * @desc The basic floor heal.
@@ -92,28 +92,35 @@
  * @option Top
  * @default Top
  *
+ * @param Tile Width Height Override
+ * @parent Tile Settings
+ * @desc Overrides tile width and height, instead of using tiled map wile width
+ * Unit in pixel, any number bigger than 0. Usually 16, 24, 32, 48. Should be the same with tile height.
+ * @default 0
+ * @type number
+ *
  * @param Map Level Variable
  * @desc Get and set map level by variable.
  * @default 0
  * @type number
- * 
+ *
  * @param Constrain Events to Grid
  * @desc Whether events should be constrained to a grid or not.
  * @default true
  * @type boolean
- * 
+ *
  * @param Position Height - Always Check On Move Update
  * @desc Whether the position height should update on every move tick or just the final.
  * @default false
  * @type boolean
  *
  * @param Custom Data
- * 
+ *
  * @param Custom Tile Flags
  * @parent Custom Data
  * @desc Set custom tile flags here.
  * @type text[]
- * 
+ *
  * @param Custom Vehicles
  * @parent Custom Data
  * @desc Set custom vehicles here.
@@ -125,14 +132,14 @@
  * @param vehicleName
  * @text Vehicle Name
  * @desc A name for the vehicle to identify this vehicle.
- * 
+ *
  * @param characterName
  * @text Character Image File Name
  * @desc The image used for the vehicle.
  * @type file
  * @dir img/characters/
  * @requre 1
- * 
+ *
  * @param characterIndex
  * @text Character Image Index
  * @desc The index used for the character image.
@@ -140,19 +147,19 @@
  * @min 0
  * @max 7
  * @default 0
- * 
+ *
  * @param bgm
  * @text Background Music
  * @type struct<Bgm>
  * @default {"name":"","pan":"0","pitch":"0","volume":"0"}
- * 
+ *
  * @param moveSpeed
  * @text Move Speed
  * @desc The move speed for this vehicle.
  * @type number
  * @min 1
  * @default 4
- * 
+ *
  * @param direction
  * @text Initial Direction
  * @desc The initial direction of the vehicle, and the direction the vehicle will be set to when reset.
@@ -166,17 +173,17 @@
  * @option Up
  * @value 8
  * @default 4
- * 
+ *
  * @param tileFlag
  * @text Tile Flag Passability
  * @desc The tile flag used to check the passability of this vehicle. Leave blank to have no tile restrictions.
- * 
+ *
  * @param hasCollision
  * @text Has Collision
  * @desc Whether the vehicle has collision detection from other entities.
  * @type boolean
  * @default true
- * 
+ *
  * @param resetDirection
  * @text Reset Direction
  * @desc Whether the vehicle direction has to be reset when exiting.
@@ -190,15 +197,15 @@
  * @type file
  * @dir audio/bgm/
  * @require 1
- * 
+ *
  * @param pan
  * @text Pan
  * @type number
- * 
+ *
  * @param pitch
  * @text Pitch
  * @type number
- * 
+ *
  * @param volume
  * @text Volume
  * @type number

@@ -906,6 +906,23 @@ Game_Map.prototype.isHalfTile = function () {
     return pluginParams["Half-tile movement"].toLowerCase() === "true";
 };
 
+Game_Map.prototype.tileWidthHeightOverride = function () {
+    const override = pluginParams["Tile Width Height Override"];
+    let overrideParsed = 0;
+    try {
+        overrideParsed = parseInt(override, 10);
+        if (!isFinite(overrideParsed) || isNaN(overrideParsed)) {
+            overrideParsed = 0;
+        }
+    } catch (error) {
+
+    }
+    if (overrideParsed === 0) {
+        return null;
+    }
+    return overrideParsed;
+};
+
 Game_Map.prototype._getTileset = function(tileId) {
     for(let idx = 0; idx < this.tiledData.tilesets.length; idx++) {
         let tileset = this.tiledData.tilesets[idx];
@@ -934,6 +951,11 @@ Game_Map.prototype.tileWidth = function () {
     if (this.isHalfTile()) {
         tileWidth /= 2;
     }
+
+    const override = this.tileWidthHeightOverride();
+    if (override != null) {
+        return override;
+    }
     return tileWidth;
 };
 
@@ -941,6 +963,11 @@ Game_Map.prototype.tileHeight = function () {
     let tileHeight = this.tiledData.tileheight;
     if (this.isHalfTile()) {
         tileHeight /= 2;
+    }
+
+    const override = this.tileWidthHeightOverride();
+    if (override  != null) {
+        return override;
     }
     return tileHeight;
 };

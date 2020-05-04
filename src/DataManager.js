@@ -50,6 +50,45 @@ DataManager.loadTiledMapData = function (mapId) {
                     }
                 }
             }
+            // compability fix for newer tiled versions
+            // after TileD Version 1.2, the format of the properties has changed
+            // since I couldn't be bothered to change every source
+            if (DataManager._tempTiledData.version >= 1.2 && true) {
+                // old format:
+                /*
+                 "properties":
+                      {
+                       "priority":"1",
+                       "zIndex":"1"
+                      },
+               "propertytypes":
+                      {
+                       "priority":"string",
+                       "zIndex":"string"
+                      },
+                 */
+                // new format (1.2 onwards)
+                /*
+                "properties":[
+                  {
+                   "name":"priority",
+                   "type":"string",
+                   "value":"1"
+                  },
+                  {
+                   "name":"zIndex",
+                   "type":"string",
+                   "value":"1"
+                  }],
+                 */
+                DataManager._tempTiledData.layers = DataManager._tempTiledData.layers.map(layer => {
+                    layer.properties = layer.properties.reduce((aggregator, currentValue) => {
+                        aggregator[currentValue.name] = currentValue.value;
+                        return aggregator;
+                    }, {});
+                    return layer;
+                });
+            }
             DataManager._tiledLoaded = tiledLoaded;
         }
     };
